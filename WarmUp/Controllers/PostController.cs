@@ -68,5 +68,15 @@ namespace WarmUp.Controllers
             _postRepository.Edit(post);
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult Image(int id)
+        {
+            var post = _postRepository.GetById(id);
+            var fileToRetrieve = post.Image;
+            if (fileToRetrieve is null)
+            {
+                return Ok();
+            }
+            return File(fileToRetrieve, "image/jpeg");
+        }
     }
 }

@@ -23,11 +23,8 @@
                     <div class="col-3">
                         @item.Title
                     </div>
-                    <div class="col-3">
-                        @Html.LabelFor(x => x.First().Image)
-                    </div>
-                    <div class="col-3">
-                        @item.Image
+                    <div class="col-6">
+                        <img src="~/Post/Image?id=@item.Id" width="160" height="160" alt="Image" />
                     </div>
                 </div>
                 <div class="row">
