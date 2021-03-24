@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Post", FormMethod.Post))
+@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -33,7 +33,7 @@
                     @Html.LabelFor(x => x.Image)
                 </div>
                 <div class="col-10">
-                    @Html.TextBoxFor(x => x.Image)
+                    <input type="file" id="Image" name="upload" />
                 </div>
             </div>
 

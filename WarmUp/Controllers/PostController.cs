@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using WarmUp.Model;
 using WarmUp.Repository;
+using System.Web;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace WarmUp.Controllers
 {
@@ -28,12 +31,21 @@ namespace WarmUp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Post post)
+        public IActionResult Create(Post post, IFormFile upload)
         {
+            if (upload != null && upload.Length > 0)
+            {
+                string fileName = Path.GetFileName(upload.FileName);
+                using (var ms=new MemoryStream())
+                {
+                    upload.CopyTo(ms);
+                    post.Image = ms.ToArray();
+                }
+            }
             post.CreateDate = DateTime.UtcNow;
             post.Active = true;
             post = _postRepository.Create(post);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Delete(int Id)
         {
