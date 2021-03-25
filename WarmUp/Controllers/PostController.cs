@@ -76,7 +76,8 @@ namespace WarmUp.Controllers
             }
             else
             {
-                post = _postRepository.GetById(id);
+                var postDb = _postRepository.GetById(id);
+                post.Image = postDb.Image;
             }
             _postRepository.Edit(post);
             return RedirectToAction("Index", "Home");

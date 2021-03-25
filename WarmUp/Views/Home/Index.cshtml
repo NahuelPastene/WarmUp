@@ -18,16 +18,8 @@
                 {
                     <div class="row">
                         <div class="col-3">
-                            @Html.LabelFor(x => x.First().Title)
-                        </div>
-                        <div class="col-3">
                             @item.Title
                         </div>
-                        <div class="col-6">
-                            <img src="~/Post/Image?id=@item.Id" width="160" height="100" alt="Image" />
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-3">
                             @Html.LabelFor(x => x.First().Category)
                         </div>
@@ -35,10 +27,7 @@
                             @item.Category
                         </div>
                         <div class="col-3">
-                            @Html.LabelFor(x => x.First().CreateDate)
-                        </div>
-                        <div class="col-3">
-                            @item.CreateDate.ToString("dd/MM/yyyy")
+                            <img src="~/Post/Image?id=@item.Id" width="160" height="100" alt="Image" />
                         </div>
                     </div>
                     <div class="row">
@@ -51,11 +40,16 @@
                         <div class="col-1">
                             <a href="@Url.Action("Edit","Post",new {Id=item.Id})"><i class="fas fa-edit" style="font-size: 18px;"></i></a>
                         </div>
+                        <div class="col-3">
+                            @Html.LabelFor(x => x.First().CreateDate)
+                        </div>
+                        <div class="col-3">
+                            @item.CreateDate.ToString("dd/MM/yyyy")
+                        </div>
                     </div>
                     <hr />
                 }
             }
         </div>
     </div>
-
 </div>

@@ -23,7 +23,7 @@ namespace WarmUp.Controllers
         public IActionResult Index()
         {
             var posts = _postRepository.GetAll();
-            return View(posts);
+            return View(posts.OrderByDescending(x => x.CreateDate));
         }
 
         public IActionResult Privacy()
