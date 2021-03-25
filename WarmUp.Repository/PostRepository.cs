@@ -34,6 +34,11 @@ namespace WarmUp.Repository
         {
             return _context.Post.Where(x => x.Active);
         }
-
+        public bool Delete(Post post)
+        {
+            _context.Post.Remove(post);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

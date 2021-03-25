@@ -1,0 +1,71 @@
+﻿@using WarmUp.Model
+@model Post
+
+@{
+    ViewData["Title"] = "Edit Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Title)
+                </div>
+                <div class="col-10">
+                    @Html.TextBoxFor(x => x.Title)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Content)
+                </div>
+                <div class="col-10">
+                    @Html.TextBoxFor(x => x.Content)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <img src="~/Post/Image?id=@Model.Id" width="160" height="100" alt="Image" />
+                </div>
+                <div class="col-10">
+                    <input type="file" id="Image" name="upload" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Category)
+                </div>
+                <div class="col-10">
+                    @Html.TextBoxFor(x => x.Category)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.CreateDate)
+                </div>
+                <div class="col-10">
+                    @Html.TextBoxFor(x => x.CreateDate, Model.CreateDate.ToString("dd/MM/yyyy"))
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    @Html.LabelFor(x => x.Active)
+                </div>
+                <div class="col-10">
+                    @Html.CheckBoxFor(x => x.Active)
+                </div>
+            </div>
+            <div class="row float-right pr-3">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

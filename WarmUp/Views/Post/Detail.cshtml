@@ -1,0 +1,58 @@
+﻿@using WarmUp.Model
+@model Post
+
+@{
+    ViewData["Title"] = "Selected Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Selected Post</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    @Html.LabelFor(x => x.Title)
+                </div>
+                <div class="col-3">
+                    @Model.Title
+                </div>
+                <div class="col-3">
+                    @Html.LabelFor(x => x.Category)
+                </div>
+                <div class="col-3">
+                    @Model.Category
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-9">
+                    @Model.Content
+                </div>
+                <div class="col-3">
+                    <img src="~/Post/Image?id=@Model.Id" width="160" height="100" alt="Image" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-1">
+                    <a href="@Url.Action("Delete","Post",new {Id=Model.Id})"><i class="fas fa-trash-alt" style="font-size: 18px;"></i></a>
+                </div>
+                <div class="col-1">
+                    <a href="@Url.Action("Edit","Post",new {Id=Model.Id})"><i class="fas fa-edit" style="font-size: 18px;"></i></a>
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-3">
+                    @Html.LabelFor(x => x.CreateDate)
+                </div>
+                <div class="col-3">
+                    @Model.CreateDate.ToString("dd/MM/yyyy")
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
