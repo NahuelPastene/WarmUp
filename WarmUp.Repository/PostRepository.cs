@@ -36,7 +36,8 @@ namespace WarmUp.Repository
         }
         public bool Delete(Post post)
         {
-            _context.Post.Remove(post);
+            post.Active = false;
+            _context.Post.Update(post);
             _context.SaveChanges();
             return true;
         }
