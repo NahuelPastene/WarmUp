@@ -63,8 +63,21 @@ namespace WarmUp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Post post)
+        public IActionResult Edit(Post post, IFormFile upload,int id)
         {
+            if (upload != null && upload.Length > 0)
+            {
+                string fileName = Path.GetFileName(upload.FileName);
+                using (var ms = new MemoryStream())
+                {
+                    upload.CopyTo(ms);
+                    post.Image = ms.ToArray();
+                }
+            }
+            else
+            {
+                post = _postRepository.GetById(id);
+            }
             _postRepository.Edit(post);
             return RedirectToAction("Index", "Home");
         }
